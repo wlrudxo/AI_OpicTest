@@ -1,0 +1,6 @@
+-r requirements-stt.txt
+fastapi==0.141.1
+uvicorn==0.52.4
+piper-tts==1.4.2
+kokoro-onnx==0.6.1
+soundfile==0.13.1
