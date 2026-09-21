@@ -26,7 +26,7 @@ def main():
         # Put each choice first in its group to exercise it in an actual set.
         selection = list(dict.fromkeys([item['id'], *legacy]))
         mock_api.validate_setup(mock_api.Setup(topics=selection))
-        for number in (1, 2, 3):
+        for number in range(1, 11):
             for level in range(1, 7):
                 questions = build_questions(selection, number, level)
                 assert len(questions) == (12 if level <= 2 else 15)
@@ -38,7 +38,7 @@ def main():
     new_choices = ['gaming', 'cafe', 'shopping', 'tv', 'news', 'bars',
                    'reading', 'photography', 'taekwondo', 'exercise_classes', 'travel', 'vacation']
     async def roundtrip():
-        with TemporaryDirectory() as directory, patch.object(mock_api, 'ROOT', Path(directory)), patch.object(mock_api.tts, 'prepare'):
+        with TemporaryDirectory() as directory, patch.object(mock_api, 'ROOT', Path(directory)):
             session = await mock_api.create(mock_api.Setup(topics=new_choices))
             loaded = await mock_api.get_session(session['id'])
             assert loaded['setup']['topics'] == new_choices
@@ -46,7 +46,7 @@ def main():
             assert loaded['questions'][1]['topic'] == '게임'
             assert loaded['questions'][4]['topic'] == '독서'
     asyncio.run(roundtrip())
-    print('PASS: 69 topics, all 3 sets and 6 levels, legacy choices, new session roundtrip')
+    print('PASS: 69 topics, all 10 sets and 6 levels, legacy choices, new session roundtrip')
 
 
 if __name__ == '__main__':

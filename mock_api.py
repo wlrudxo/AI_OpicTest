@@ -4,14 +4,14 @@ from pathlib import Path
 import re
 import time
 from uuid import uuid4
+from typing import Literal
 
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import FileResponse, PlainTextResponse
 from pydantic import BaseModel, Field
 
 import stt
-import tts
-from questions import TOPICS, build_questions
+from questions import TOPICS, build_questions, adjusted_prompt, MAX_SETS
 from survey import catalog, GROUPS
 
 router = APIRouter(prefix='/api')
@@ -83,9 +83,10 @@ def recover():
 
 
 class Setup(BaseModel):
+    profile_id: Literal['', 'KT', 'SH'] = ''
     topics: list[str]
     level: int = Field(default=5, ge=1, le=6)
-    set_number: int = Field(default=1, ge=1, le=3)
+    set_number: int = Field(default=1, ge=1, le=MAX_SETS)
     mode: str = 'exam'
     occupation: str = Field(default='직장인', max_length=100)
     student: str = Field(default='아니오', max_length=100)
@@ -98,6 +99,16 @@ async def topics():
     return catalog()
 
 
+@router.get('/survey-presets')
+async def survey_presets():
+    path = Path(__file__).resolve().parent / 'data/survey-presets.json'
+    if not path.exists():
+        return {}
+    presets = json.loads(path.read_text(encoding='utf-8'))
+    return {key: Setup(**value, profile_id=key).model_dump()
+            for key, value in presets.items() if key in ('KT', 'SH')}
+
+
 def validate_setup(body):
     keys = {item['id'] for item in catalog()}
     if len(set(body.topics)) < 12 or any(t not in keys for t in body.topics) or body.mode not in ['exam', 'practice']:
@@ -107,14 +118,6 @@ def validate_setup(body):
             raise HTTPException(400, f'{title} {minimum}개 이상 선택해주세요.')
 
 
-@router.post('/speech/prepare')
-async def prepare_speech(body: Setup):
-    validate_setup(body)
-    questions = build_questions(body.topics, body.set_number, body.level)
-    tts.prepare(q['prompt'] for q in questions)
-    return {'status': 'preparing', 'count': len(questions)}
-
-
 @router.post('/sessions')
 async def create(body: Setup):
     validate_setup(body)
@@ -122,7 +125,6 @@ async def create(body: Setup):
          'deadline': None, 'status': 'ready', 'cursor': 0, 'adjustment': None,
          'questions': build_questions(body.topics, body.set_number, body.level), 'plays': {}, 'answers': []}
     save(s)
-    tts.prepare(q['prompt'] for q in s['questions'])
     return s
 
 
@@ -138,8 +140,6 @@ async def history():
 @router.get('/sessions/{sid}')
 async def get_session(sid: str):
     s = read(sid)
-    if s['status'] in ['ready', 'active']:
-        tts.prepare(q['prompt'] for q in s['questions'][s['cursor']:])
     feedback = folder(sid) / 'feedback.json'
     s['feedback'] = json.loads(feedback.read_text(encoding='utf-8')) if feedback.exists() else None
     return s
@@ -188,11 +188,10 @@ async def adjust(sid: str, body: Adjust):
     s['adjustment'] = body.choice
     for q in s['questions'][7:]:
         if body.choice == 'easier':
-            q['prompt'] = q['base_prompt'].split('. ')[0] + '.'
+            q['prompt'] = adjusted_prompt(q, 'easier')
         elif body.choice == 'harder':
-            q['prompt'] = q['base_prompt'] + ' Explain why, and describe how the situation might have turned out differently.'
+            q['prompt'] = adjusted_prompt(q, 'harder')
     save(s)
-    tts.prepare(q['prompt'] for q in s['questions'][7:])
     return s
 
 

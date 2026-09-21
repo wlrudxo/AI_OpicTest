@@ -1,5 +1,11 @@
 # 공개 모의고사와 설계 근거
 
+## 2026-09-17 문제 유형 추가 조사
+
+[문제 유형 조사](QUESTION_TYPE_RESEARCH_2026-09-17.md)에 공식·주관사 5개와 사설·교육 10개 자료의 확인 범위, 출처별 차이, 핵심 14유형과 확장 2유형을 정리했다. [문제은행 제작 기준](QUESTION_BANK_BLUEPRINT.md)에는 자체 예시 16개와 생성·저장·검수 기준이 있다. 이후 지정 관심 주제 조합의 자체 제작 10세트를 앱에 반영했다. [구현 범위](PRACTICE_SETS.md)는 조사 근거와 구별한다.
+
+## 기존 조사
+
 확인일: 2026-09-08. 아래 목록은 원문에 접근해 확인한 자료의 링크·주제 요약이다. 앱에 문제 전문이나 영상 파일을 가져온 상태는 아니다.
 
 ## 바로 사용할 공개 모의고사 3개
@@ -36,3 +42,7 @@
 - [MDN MediaRecorder](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder): 브라우저 녹음.
 - [MDN dataavailable](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/dataavailable_event): stop 뒤 마지막 Blob 수신을 기다린 후 업로드.
 - [MDN getUserMedia](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia): 마이크 권한과 localhost 보안 컨텍스트.
+
+- [MDN SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis): 기기의 음성 목록, 브라우저 TTS, voiceschanged 처리.
+- [MDN SpeechRecognition](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition): 브라우저별 인식 지원과 서버 기반 인식.
+- [MDN Secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Secure_Contexts): HTTPS와 localhost 보안 컨텍스트.

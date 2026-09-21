@@ -1,4 +1,8 @@
 """Original practice prompts. The grouping imitates OPIc practice conventions."""
+import re
+
+from practice_bank import MAX_SETS, authored_questions
+
 TOPICS = {
     'gaming': ('게임', [
         'Tell me about a video game you enjoy. What do you do in the game, and what makes it fun for you?',
@@ -72,7 +76,7 @@ ROLES = [
 ]
 
 
-def build_questions(topics, set_number, level):
+def legacy_questions(topics, set_number):
     selected = list(dict.fromkeys(topics))
     group_by_id = {item['id']: item['group'] for item in catalog()}
     leisure = [t for t in selected if group_by_id.get(t) == 'leisure'] or selected
@@ -80,22 +84,52 @@ def build_questions(topics, set_number, level):
     first = leisure[(set_number-1) % len(leisure)]
     second = other[(set_number-1) % len(other)]
     out = [{'topic': '자기소개', 'type': '자기소개', 'prompt': 'Please introduce yourself. Tell me a little about your daily life and the things you enjoy doing.'}]
-    for topic, prompts in [TOPICS[first], TOPICS[second], SURPRISE[set_number - 1]]:
+    for topic, prompts in [TOPICS[first], TOPICS[second], SURPRISE[(set_number - 1) % len(SURPRISE)]]:
         for kind, prompt in zip(['묘사', '습관·일상', '과거 경험'], prompts):
             out.append({'topic': topic, 'type': kind, 'prompt': prompt})
-    topic, prompts = ROLES[set_number - 1]
+    topic, prompts = ROLES[(set_number - 1) % len(ROLES)]
     for kind, prompt in zip(['질문하기', '문제 해결', '관련 경험'], prompts):
         out.append({'topic': topic, 'type': kind, 'prompt': prompt})
     out.extend([
         {'topic': '생활 변화', 'type': '비교', 'prompt': 'Compare the way you spend your free time now with the way you spent it several years ago. What has changed, and what caused those changes?'},
         {'topic': '기술과 일상', 'type': '의견', 'prompt': 'People often use their phones while spending time with friends. What problems can this cause, and what do you think people should do about it? Give specific examples.'},
     ])
+    return out
+
+
+def adjusted_prompt(question, choice):
+    """Keep role-play context and instructions intact when changing difficulty."""
+    base = question['base_prompt']
+    type_id = question.get('type_id')
+    roleplay = type_id in ('T11', 'T12') or question['type'] in ('질문하기', '문제 해결')
+    if choice == 'easier':
+        if roleplay or question.get('roleplay_followup') or question['type'] == '관련 경험':
+            return base
+        return re.split(r'(?<=[.!?])\s+', base, maxsplit=1)[0]
+    if choice == 'harder':
+        if roleplay:
+            return base + ' Include the details the other person needs to respond to you.'
+        return base + ' Support your response with specific details and explain your reasons.'
+    return base
+
+
+def build_questions(topics, set_number, level):
+    if not 1 <= set_number <= MAX_SETS or not 1 <= level <= 6:
+        raise ValueError('회차는 1–10, 난이도는 1–6이어야 합니다.')
+    selected = list(dict.fromkeys(topics))
+    out = authored_questions(selected, set_number)
+    if out is None:
+        from practice_bank_instrument import authored_questions as instrument_questions
+        out = instrument_questions(selected, set_number)
+    if out is None:
+        out = legacy_questions(selected, set_number)
     if level <= 2:
+        # 1 warm-up + three complete topic blocks + the two linked role tasks.
         out = out[:12]
     for i, q in enumerate(out):
         q.update(id=f'q{i+1:02d}', order=i+1, base_prompt=q['prompt'])
         if level <= 2:
-            q['prompt'] = q['prompt'].split('. ')[0] + ('' if q['prompt'].split('. ')[0].endswith('?') else '.')
+            q['prompt'] = adjusted_prompt(q, 'easier')
         if level == 6:
-            q['prompt'] += ' Explain your reasons with specific details.'
+            q['prompt'] = adjusted_prompt(q, 'harder')
     return out

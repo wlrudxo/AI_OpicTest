@@ -12,8 +12,6 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 import stt
 import mock_api
-import tts
-from pydantic import BaseModel, Field
 from fastapi.staticfiles import StaticFiles
 
 ROOT = Path(__file__).resolve().parent
@@ -28,7 +26,6 @@ async def lifespan(app):
     mock_api.recover()
     worker = asyncio.create_task(mock_api.worker(app.state.model, gpu_lock))
     yield
-    await tts.shutdown()
     worker.cancel()
     try:
         await worker
@@ -63,16 +60,6 @@ async def index():
 @app.get('/api/health')
 async def health():
     return {'ready': True, 'model': 'large-v3', 'device': 'cuda'}
-
-
-class SpeechRequest(BaseModel):
-    text: str = Field(min_length=1, max_length=2500)
-
-
-@app.post('/api/speech')
-async def speech(body: SpeechRequest):
-    path = await asyncio.to_thread(tts.synthesize, body.text)
-    return FileResponse(path, media_type='audio/wav')
 
 
 @app.post('/api/transcribe')

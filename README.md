@@ -1,8 +1,12 @@
-# OPIc 로컬 모의시험
+# OPIc 모의시험
 
-Windows에서 실행하는 개인 연습용 웹앱입니다. 설문 선택, 질문 음성, 녹음, 로컬 전사, 답변 복기를 지원합니다. 공식 OPIc 서비스나 등급 보장 도구가 아닙니다.
+PC와 모바일 브라우저에서 사용하는 개인 연습용 웹앱입니다. 설문 선택, 질문 음성, 녹음, 로컬 전사, 답변 복기를 지원합니다. 공식 OPIc 서비스나 등급 보장 도구가 아닙니다.
 
 ## 설치 및 실행
+
+**설치 없는 PC·모바일 버전**은 [전달용 HTML 안내](docs/PORTABLE.md)를 참고하세요. SH / KT별 10회분 질문을 브라우저 기본 TTS로 읽고, 브라우저 STT로 TXT·MD 결과를 만듭니다. MP3 준비·Python·CUDA·AI 모델 설치가 필요하지 않습니다. 모바일은 HTTPS 주소를 Android Chrome 또는 iPhone Safari에서 열고 음성·마이크를 확인하세요.
+
+아래는 답변 녹음과 GPU 로컬 전사를 사용하는 Windows 버전의 설치 방법입니다.
 
 Python 3.10 이상, NVIDIA CUDA 환경과 호환 cuDNN 9·cuBLAS 12 DLL이 필요합니다. 아래 명령으로 Python 의존성을 설치합니다.
 
@@ -14,17 +18,16 @@ python -m venv .venv
 모델은 저장소에 포함되지 않습니다. 실행 전에 다음 파일을 별도로 준비해야 합니다.
 
 - faster-whisper `large-v3`: 로컬 Hugging Face 캐시에 준비. 실행 중에는 `local_files_only=True`로 로컬 파일만 읽습니다.
-- Kokoro ONNX: `data/tts-model/kokoro/kokoro-v1.0.onnx`, `data/tts-model/kokoro/voices-v1.0.bin`.
 - 필요한 CUDA DLL 경로는 `OPIC_CUDA_DLL_DIR` 환경변수로 지정할 수 있습니다. [STT 설정](docs/STT.md)을 참고하세요.
 
-모델 설치 근거: [faster-whisper](https://github.com/SYSTRAN/faster-whisper), [Kokoro ONNX](https://github.com/thewh1teagle/kokoro-onnx). 모델의 이용 조건은 각 배포처를 확인하세요.
+모델 설치 근거: [faster-whisper](https://github.com/SYSTRAN/faster-whisper). 모델의 이용 조건은 각 배포처를 확인하세요.
 
 `start.bat` 실행 후 [로컬 앱](http://127.0.0.1:8765)을 Chrome/Edge에서 엽니다. 최초 모델 로딩에는 시간이 걸릴 수 있습니다. Python 패키지 설치만으로 모델까지 준비되는 것은 아닙니다.
 
 ## 사용 흐름
 
-1. Background Survey: 여가·취미·운동·휴가/출장 총 69개 중 12개 이상 선택. 여가 2개, 나머지 영역은 각각 1개 이상 선택합니다.
-2. 난이도 1–6, 회차 1–3, 실전/연습 모드를 선택합니다.
+1. 시작 화면에서 KT / SH 저장 설문을 불러오거나 직접 준비합니다. 프리셋은 난이도 5·01회차·실전 모드로 시작합니다. 수강 정보가 비어 있으면 최초 한 번 선택하고, 이후에는 프로필별로 기억합니다. Background Survey: 여가·취미·운동·휴가/출장 총 69개 중 12개 이상 선택. 여가 2개, 나머지 영역은 각각 1개 이상 선택합니다.
+2. 난이도 1–6, 회차 01–10, 실전/연습 모드를 선택합니다. 회차명에는 주제 힌트를 표시하지 않습니다.
 3. 실제 마이크를 선택하고 샘플 음성·녹음을 점검합니다.
 4. Begin Test로 40분 시작. 질문 재생 후 자동 녹음, Next로 저장합니다. 실전 질문 청취는 최대 2회이며 첫 청취 후 5초 이내에 다시 듣기를 시작할 수 있습니다.
 5. 7번 뒤 난이도 재선택. 종료 후 녹음 듣기, 전사 수정, STT 재시도, 채점용 Markdown 내보내기를 사용할 수 있습니다.
@@ -33,9 +36,12 @@ python -m venv .venv
 
 ## 문항과 평가
 
-- 설문은 공개 자료를 참고한 연습용 목록입니다. 최신 공식 실전 전체 목록과의 완전한 일치는 보장하지 않습니다. [출처·차이·불확실한 항목](docs/SURVEY_RESEARCH_2026-09-15.md).
+- [문제 유형 조사](docs/QUESTION_TYPE_RESEARCH_2026-09-17.md)와 [문제은행 제작 기준](docs/QUESTION_BANK_BLUEPRINT.md): 공식·사설 자료를 비교한 핵심 14유형과 확장 2유형, 자체 예시 및 생성 설계입니다. [10회차 구현 범위와 질문 음성](docs/PRACTICE_SETS.md)도 참고하세요.
+- 설문은 공개 자료를 참고한 연습용 목록입니다. 최신 공식 실전 전체 목록과의 완전한 일치는 보장하지 않습니다. [공식 체험판·최근 커뮤니티 대조 결과](docs/SURVEY_AUDIT_2026-09-17.md).
 - 자체 제작 문제은행과 공통 활동 템플릿을 사용합니다. 게임·독서·카페·쇼핑도 선택할 수 있습니다.
-- 회차는 고정 3세트입니다. 같은 설문·회차·난이도는 같은 문제를 생성하므로, 장기 연습에서는 선택 주제를 바꿔 활용하세요. 직업·학생·주거는 저장하지만 현재 주제 선정은 관심 항목에서 합니다.
+- 영화·공연·콘서트·공원·게임·독서·조깅·걷기·집 휴가·국내여행·해외여행을 모두 선택하면 별도로 작성한 10세트가 제공됩니다. 3–6단계 기준 총 150문항 자리이며, 공통 자기소개를 제외한 140개 질문은 서로 다릅니다. ‘운동 안 함’은 활동 문제로 생성하지 않습니다.
+- 게임·독서 대신 악기 연주·헬스를 선택한 조합에도 별도로 작성한 10세트를 제공합니다. KT / SH는 이 두 조합의 개인 설문 프리셋이며 `data/survey-presets.json`에만 저장합니다.
+- 다른 설문 조합에서도 회차 01–10을 선택할 수 있지만 기존 공통 템플릿을 순환하므로 반복될 수 있습니다. 같은 설문·회차·난이도는 같은 문항을 반환합니다. 직업·학생·주거는 저장하지만 현재 주제 선정은 관심 항목에서 합니다.
 - 난이도 1–2는 12문항, 3–6은 15문항인 연습 템플릿이며 공식 출제 알고리즘을 재현한 것이 아닙니다.
 - AI 출제·자동 채점 API는 호출하지 않습니다. 외부에서 평가한 `feedback.json`을 세션 폴더에 저장하면 복기 화면에 표시합니다. 현재는 JSON을 표시하며 피드백 스키마·답변 버전 일치 여부를 자동 검증하지 않습니다.
 - 전사문만 평가할 때 발음·억양을 판정하지 않고 STT 오류와 영어 오류를 구분해야 합니다.
@@ -50,9 +56,19 @@ python -m venv .venv
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/verify_survey.py
+.\.venv\Scripts\python.exe scripts/verify_practice_bank.py
+.\.venv\Scripts\python.exe scripts/verify_instrument_bank.py
 ```
 
 설문 전체, 기존 선택값, 모든 회차·난이도 및 임시 디렉터리에서 새 세션 저장·로드를 확인합니다. 실제 GPU·마이크·TTS를 검증하는 테스트는 아닙니다.
+
+질문 음성은 두 버전 모두 브라우저 기본 TTS를 사용합니다. 별도 모델이나 MP3를 설치·생성하지 않으며 음성 종류는 기기에 따라 다릅니다. 전달용 HTML 빌드는 Python 표준 라이브러리만 필요합니다.
+
+```powershell
+python scripts/build_portable.py
+python scripts/verify_portable_package.py
+node scripts/verify_portable.cjs
+```
 
 `scripts/verify_stt.py`는 모델·FFmpeg·영어 테스트 음성 준비가 필요합니다. `scripts/verify_mock.py`는 실행 중인 로컬 서버와 테스트 오디오를 사용하며 합성 테스트 세션을 별도 보관합니다.
 
