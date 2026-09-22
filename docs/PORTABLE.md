@@ -6,11 +6,11 @@
 
 1. 아래 빌드로 만든 `data/share/OPIc_SH_5-5/index.html` 또는 KT 파일을 HTTPS 정적 웹사이트에 올린다. HTML 하나만 제공하면 된다. 호스팅 배포는 자동으로 수행하지 않는다.
 2. 휴대폰에서 해당 HTTPS 주소를 Android Chrome 또는 iPhone Safari로 연다. 메신저 첨부 미리보기나 PC의 일반 HTTP 주소 대신 브라우저로 연다.
-3. 질문 음성 확인과 마이크 · STT 확인을 누르고 마이크를 허용한다. 회차를 골라 시작한다.
+3. 회차를 고르고 시험 시작을 누른다. 사전 테스트는 필요 없다. 첫 답변 때 마이크 권한을 요청하면 허용한다. 음성 설정·테스트는 선택 메뉴이며 이전 연결 확인 여부를 기억한다.
 4. 문항마다 PLAY를 눌러 질문을 듣는다. 인식이 자동 시작되지 않으면 음성인식 다시 시작을 누른다. 시험 중 화면을 켜두고 다른 앱으로 전환하지 않는다.
 5. 시험 후 결과 MD/TXT를 내려받아 피드백을 요청한다.
 
-브라우저에 음성인식 기능이 없으면 시작 버튼을 사용할 수 없다. 같은 브라우저라도 기기·네트워크·권한에 따라 인식 서비스가 실패할 수 있다. 실제 기기의 마이크와 스피커는 시작 전 확인이 필요하다.
+브라우저에 음성인식 기능이 없으면 시작 버튼 옆에서 지원 브라우저로 여는 방법을 안내한다. 같은 브라우저라도 기기·네트워크·권한에 따라 인식 서비스가 실패할 수 있다. 실제 기기의 마이크와 스피커는 시작 전 확인이 필요하다.
 
 ## PC 사용
 
@@ -43,3 +43,11 @@ node scripts/verify_portable.cjs
 동작 근거: [MDN SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis), [SpeechRecognition](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition), [Secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Secure_Contexts).
 
 브라우저 화면 검증: 데스크톱 Chromium의 390×844 뷰포트에서 시작·시험 화면과 가로 넘침 없음을 확인했다. 실제 휴대폰의 음성 합성·마이크 인식은 미검증이다.
+
+## Android 전사 처리 (2026-09-22)
+
+Android에서는 `continuous=false`, `interimResults=true`로 문장 단위 인식을 사용한다. Chromium Android의 연속 모드는 중간 가설을 확정 결과로 변환할 수 있어, 짧은 발화가 `my`, `my name`, `my name is`처럼 겹쳐 누적되는 현상을 피하기 위한 설정이다. 문장 인식이 끝나면 앱이 다음 인식을 자동 시작하고 앞 문장은 보존한다. 문장 사이에 재연결 간격이 생길 수 있다.
+
+중간 가설은 같은 결과 자리에서 갱신하고 확정 결과로 교체한다. 실제로 반복해서 말한 단어나 문장을 텍스트 중복 제거로 지우지 않는다. 이름 등 고유명사 오인식은 시험 후 수정할 수 있다. 기존 저장 결과를 임의로 고치지 않는다.
+
+근거: [Chromium Android SpeechRecognitionImpl](https://chromium.googlesource.com/chromium/src/+/e26f3c7e3a932fe4401a979a4bf36e5546b82cb9/content/public/android/java/src/org/chromium/content/browser/SpeechRecognitionImpl.java), [MDN 인식 결과의 갱신 규칙](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionEvent/results).
