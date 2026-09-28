@@ -4,7 +4,7 @@
 
 ## 모바일 사용
 
-1. 아래 빌드로 만든 `data/share/OPIc_SH_5-5/index.html` 또는 KT 파일을 HTTPS 정적 웹사이트에 올린다. HTML 하나만 제공하면 된다. 호스팅 배포는 자동으로 수행하지 않는다.
+1. GitHub Pages 주소 [wlrudxo.github.io/AI_OpicTest](https://wlrudxo.github.io/AI_OpicTest/)에서 KT 또는 SH를 연다. `main`에 푸시하면 `.github/workflows/pages.yml`이 두 HTML을 다시 빌드해 `/kt/`, `/sh/`에 배포한다. 다른 HTTPS 정적 호스팅에 `data/share/OPIc_SH_5-5/index.html` 또는 KT 파일 하나만 올려도 된다.
 2. 휴대폰에서 해당 HTTPS 주소를 Android Chrome 또는 iPhone Safari로 연다. 메신저 첨부 미리보기나 PC의 일반 HTTP 주소 대신 브라우저로 연다.
 3. 회차를 고르고 시험 시작을 누른다. 사전 테스트는 필요 없다. 첫 답변 때 마이크 권한을 요청하면 허용한다. 음성 설정·테스트는 선택 메뉴이며 이전 연결 확인 여부를 기억한다.
 4. 문항마다 PLAY를 눌러 질문을 듣는다. 인식이 자동 시작되지 않으면 음성인식 다시 시작을 누른다. 시험 중 화면을 켜두고 다른 앱으로 전환하지 않는다.

@@ -1,0 +1,44 @@
+name: Deploy portable practice to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build portable HTML
+        run: |
+          python scripts/build_portable.py
+          python scripts/verify_portable_package.py
+      - name: Assemble site
+        run: |
+          mkdir -p _site/kt _site/sh
+          cp pages/index.html _site/index.html
+          cp data/share/OPIc_KT_5-5/index.html _site/kt/index.html
+          cp data/share/OPIc_SH_5-5/index.html _site/sh/index.html
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
