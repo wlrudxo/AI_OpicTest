@@ -6,7 +6,7 @@ The selected activities are prerequisites; negative survey choices are not topic
 from copy import deepcopy
 
 MAX_SETS = 10
-BANK_VERSION = 'survey-v1'
+BANK_VERSION = 'survey-v2'
 REQUIRED_TOPICS = frozenset({
     'movies', 'shows', 'concerts', 'park', 'gaming', 'reading',
     'jogging', 'walking', 'vacation', 'travel', 'travel_abroad',
@@ -34,262 +34,262 @@ def block(topic_id, topic, origin, text):
 SETS = [
     [
         block('gaming', '게임', 'survey', """
-T02|Describe a game you like to play in your free time. What does a player do in this game, and which part of it do you find most enjoyable?
-T03|Tell me about a typical gaming session for you. How do you decide when to play, whether to play alone or with others, and when it is time to stop?
-T07|Tell me about a time a game turned out differently from what you expected. Describe what you were trying to do, what actually happened, and how you reacted afterward.
+T02|Tell me about a game you like to play in your free time. What do you do in the game? What do you enjoy most about it?
+T03|How often do you play games? When and where do you usually play? Do you play alone or with other people?
+T07|Tell me about a game that turned out differently than you expected. What happened? How did you feel about it?
 """),
         block('reading', '독서', 'survey', """
-T02|Describe the kinds of books you enjoy reading. Choose one kind and explain what you usually find inside those books and what keeps you interested in them.
-T06|How did you first become interested in reading for pleasure? Tell me about a person, a book, or an experience that encouraged you to read, and describe what happened.
-T09|How have your reading habits changed since you were younger? Compare where you read and how you choose books now with what you used to do, and explain the changes.
+T02|What kinds of books do you like to read? Pick one kind and tell me what those books are usually about. Why do you like them?
+T06|When did you first start reading for fun? Was there a person or a book that got you into reading? Tell me what happened.
+T09|How have your reading habits changed since you were younger? What did you read back then, and what do you read now?
 """),
         block('transport', '교통', 'common', """
-T02|Describe the public transportation available near your home. Which service is convenient for you, and what should a visitor know about using it?
-T05|Tell me about the last time you used public transportation. Where were you going, what was the journey like, and what did you do when you arrived?
-T08|Tell me about a time a delay made it difficult to reach a destination. What caused the delay, how did you respond, and how did the situation end?
+T02|Tell me about the public transportation near your home. What do you usually take? Why is it convenient for you?
+T05|Tell me about the last time you took a bus or a train. Where were you going? What happened on the way?
+T08|Have you ever been late because of a traffic jam or a delay? What happened? How did you deal with it?
 """),
         block('shows', '공연 예매', 'survey', """
-T11|You want to see a live performance with a friend this weekend. Call the theater's ticket office and ask three or four questions that will help you choose a performance and book seats.
-T12|You and your friend have now booked tickets, but the theater announces that the performance will start two hours later. Call your friend, explain the change, and suggest two ways to handle your plans.
-T08|The role-play is over. Tell me about a real time the schedule for an event changed unexpectedly. What plans did you have, what changed, and what did you decide to do?
+T11|You want to see a live show with a friend this weekend. Call the theater and ask three or four questions about the shows and the seats.
+T12|You booked the tickets, but the theater says the show will start two hours late. Call your friend, explain what happened, and give two ways to change your plans.
+T08|That's the end of the role-play. Has the schedule of an event ever changed suddenly on you? What were your plans? What did you do?
 """),
         block('movies', '영화 감상 방식', 'survey', """
-T10|Compare watching a movie at home with watching one at a theater. Describe the atmosphere and the choices you can make in each place. When would you prefer one experience over the other?
-T13|What changes have you noticed in the way people choose movies to watch? Describe one trend you have seen among people around you and explain how it affects their choices.
+T10|Compare watching a movie at home and watching a movie at a theater. What is different about them? Which one do you prefer, and why?
+T13|How do people around you choose movies to watch these days? How is it different from before?
 """),
     ],
     [
         block('movies', '영화', 'survey', """
-T02|Describe a movie character you found interesting. What is the character like, what role does the character have in the story, and why did that person catch your attention?
-T04|Explain how you arrange a movie night with another person. Describe how you choose a movie, decide where to watch it, and prepare before it begins.
-T07|Tell me about a movie that led to an interesting conversation afterward. Who did you talk with, what did you discuss, and did the conversation change how you felt about the movie?
+T02|Tell me about an interesting character from a movie you watched. What is the character like? Why do you remember them?
+T04|Tell me how you plan a movie night with a friend. How do you pick the movie? What do you prepare before it starts?
+T07|Tell me about a movie you talked about a lot with someone after watching it. Who did you talk with? What did you talk about?
 """),
         block('park', '공원', 'survey', """
-T02|Describe a park you know well. What are its main features, what do visitors do there, and which part of the park would you show to someone visiting for the first time?
-T03|What do you usually do during a short visit to a park? Tell me how you get there, how you spend your time, and what affects how long you stay.
-T08|Tell me about a time an outdoor outing did not go as planned. What were you expecting to do, what got in the way, and how did you change your plans?
+T02|Tell me about a park you know well. What does it look like? What do people do there?
+T03|What do you usually do when you go to a park? How do you get there? How long do you usually stay?
+T08|Have you ever had an outing that did not go as planned? What went wrong? What did you do instead?
 """),
         block('weather', '날씨', 'common', """
-T02|Describe the weather in your area during the season you enjoy most. What is a typical day like, and which activities are comfortable to do at that time of year?
-T09|Compare the way you spent very hot or cold days as a child with what you do now. What has changed in your activities, and what has stayed the same?
-T05|Tell me about a recent day when the weather affected your routine. Describe the weather, the plans you had, and what you actually did that day.
+T02|What is the weather like in your favorite season? What do you like to do when the weather is like that?
+T09|How did you spend very hot or very cold days when you were a child? How is it different now?
+T05|Tell me about a recent day when the weather changed your plans. What was the weather like? What did you end up doing?
 """),
         block('reading', '독서 모임', 'survey', """
-T11|You are interested in attending a reading group at a local library for the first time. Call the organizer and ask three or four questions about joining the next meeting.
-T12|You have signed up for the reading group, but you cannot get a copy of the book before the meeting. Call the organizer, explain the difficulty, and suggest two possible ways you could still participate.
-T08|The role-play has ended. Describe a time you could not prepare something you needed for a planned activity. What was missing, how did you deal with it, and what happened in the end?
+T11|You want to join a reading group at a local library for the first time. Call the person in charge and ask three or four questions about the next meeting.
+T12|You signed up for the reading group, but you cannot get the book before the meeting. Call the person in charge, explain the problem, and give two ways you could still take part.
+T08|That's the end of the role-play. Have you ever been unable to get something ready for a plan? What was missing? How did you handle it?
 """),
         block('travel_abroad', '해외여행 방식', 'survey', """
-T10|Compare traveling abroad independently with joining an organized group tour. What choices do travelers have in each case, and what kinds of people might prefer each option?
-T14|Some travelers plan every day in advance, while others leave most of the trip open. Which approach works better for you when visiting another country? Explain your view with specific reasons.
+T10|Compare traveling abroad on your own and traveling with a group tour. What are the good and bad points of each? Which do you prefer?
+T14|Some people plan every day of a trip, and others just go with the flow. Which way works better for you when you travel abroad? Why?
 """),
     ],
     [
         block('shows', '공연', 'survey', """
-T02|Describe the kinds of live performances you like. What happens on stage in a performance you enjoy, and what makes seeing it in person appealing to you?
-T05|Tell me about the most recent live performance you attended. Describe where it took place, what you saw, and how you spent your time before and after the performance.
-T06|Tell me about an early experience that sparked your interest in live performances. How did you decide to go, who was involved, and what do you remember about that experience?
+T02|What kinds of live shows do you like to see? What usually happens during the show? Why do you like watching it in person?
+T05|Tell me about the last live show you went to. Where was it? What did you do before and after the show?
+T06|When did you first become interested in live shows? Who did you go with? What do you remember about it?
 """),
         block('vacation', '집에서 보내는 휴가', 'survey', """
-T03|When you spend a vacation at home, how is your daily routine different from an ordinary day? Tell me about when you get up, the activities you choose, and how you relax.
-T04|Explain how you prepare to enjoy several days off at home. What do you take care of beforehand, what do you arrange, and how do you decide what to do?
-T07|Tell me about a day off at home that was especially satisfying. Describe what happened during the day and explain why it felt different from your usual time at home.
+T03|What do you usually do when you spend your vacation at home? What time do you get up? How is it different from a normal day?
+T04|What do you do to get ready for a vacation at home? Do you buy anything or make any plans? Tell me in detail.
+T07|Tell me about a day off at home that you really enjoyed. What did you do that day? Why was it so good?
 """),
         block('technology', '생활 속 기기', 'common', """
-T02|Describe a device you use often at home. What do you use it for, which features matter to you, and where does it fit into your daily life?
-T09|Think about a task you do with technology today. How did you or people around you do the same task in the past? Compare the two ways and explain the biggest difference.
-T08|Tell me about a time a device stopped working at an inconvenient moment. What were you doing, what did you try to fix, and how did you finish what you needed to do?
+T02|Tell me about a device you use a lot at home. What do you use it for? Why is it important to you?
+T09|Think about something you do with technology today. How did people do it in the past? What is the biggest difference?
+T08|Have you ever had a device stop working at a bad time? What were you doing? How did you solve the problem?
 """),
         block('travel', '국내 숙소 예약', 'survey', """
-T11|You are planning a short trip to another city in your country and need a place to stay. Call a guesthouse and ask three or four questions before making a reservation.
-T12|You have reserved a room, but your transportation will arrive after the guesthouse's check-in desk closes. Call the guesthouse, explain your situation, and suggest two possible arrangements.
-T08|That is the end of the role-play. Tell me about a time you had to change an arrangement because you were going to arrive late. Who did you contact, and how was the problem resolved?
+T11|You are planning a short trip to another city in your country. Call a guesthouse and ask three or four questions before you make a reservation.
+T12|You booked a room, but you will arrive after the guesthouse's front desk closes. Call the guesthouse, explain the situation, and give two ways to solve the problem.
+T08|That's the end of the role-play. Have you ever had to change a plan because you were going to be late? Who did you contact? How did it work out?
 """),
         block('gaming', '게임 방식 비교', 'survey', """
-T10|Compare a game you enjoy playing alone with a game you enjoy playing with other people. How do the goals, pace, and experience of playing differ?
-T14|People sometimes disagree about whether playing games together is a good way to spend time with friends. What do you think? Explain what can make the experience enjoyable or frustrating.
+T10|Compare a game you play alone with a game you play with other people. How are they different? Which do you enjoy more?
+T14|Some people think playing games together is a good way to spend time with friends, but others do not. What do you think? What are the good and bad sides?
 """),
     ],
     [
         block('concerts', '콘서트', 'survey', """
-T02|Describe a place where you have attended a concert. What was the space like, how was the audience arranged, and what could you see and hear from your spot?
-T04|Explain what you normally do to prepare for a concert. Describe the steps from deciding to attend to arriving at the venue, including anything you check in advance.
-T07|Tell me about a moment at a concert that you still remember clearly. What was happening, how did the people around you react, and why did that moment stay with you?
+T02|Tell me about a place where you have seen a concert. What did it look like? Where were you standing or sitting?
+T04|What do you usually do to get ready for a concert? What do you check before you go? How do you get to the venue?
+T07|Tell me about a moment at a concert that you still remember. What was happening? How did the crowd react?
 """),
         block('walking', '걷기', 'survey', """
-T02|Describe a route you like to walk, even if you only go occasionally. Where does it lead, what do you pass along the way, and what do you like about it?
-T03|When you decide to go for a walk, how do you choose the time, route, and length of the walk? Tell me what you usually do along the way.
-T05|Tell me about a recent walk you took. Where did you go, what caught your attention, and how did you feel by the time you returned?
+T02|Tell me about a place where you like to take a walk. What do you see along the way? Why do you like it?
+T03|When do you usually go for a walk? How long do you walk? What do you do while you walk?
+T05|Tell me about the last time you went for a walk. Where did you go? How did you feel afterward?
 """),
         block('recycling', '재활용', 'common', """
-T04|Explain how you sort and dispose of recyclable items where you live. What do you separate, where do you take it, and what steps do you follow?
-T09|How has the way you handle household waste changed over time? Compare what you do now with what you remember doing before, and explain one reason for the change.
-T08|Tell me about a time you were unsure how to get rid of something you no longer needed. What was the item, how did you find out what to do, and what did you eventually do?
+T04|How do you recycle at home? What do you separate? Where do you take it?
+T09|How has the way you throw away trash changed over the years? What did you do in the past, and what do you do now?
+T08|Have you ever not known how to throw something away? What was it? How did you find out what to do?
 """),
         block('gaming', '게임 기기 빌리기', 'survey', """
-T11|You would like to borrow a friend's game console for a weekend gathering. Call your friend and ask three or four questions about borrowing it and setting it up.
-T12|Your friend has lent you the console, but you discover that one controller will not connect. Call your friend, explain what you have tried, and suggest two ways to deal with the problem.
-T08|The role-play is finished. Tell me about a time something you borrowed did not work as expected. What was it, what did you do, and how did you handle the situation with its owner?
+T11|You want to borrow a friend's game console for the weekend. Call your friend and ask three or four questions about borrowing it and setting it up.
+T12|You borrowed the console, but one of the controllers will not connect. Call your friend, explain what you have tried, and give two ways to deal with the problem.
+T08|That's the end of the role-play. Have you ever borrowed something that did not work properly? What was it? What did you do?
 """),
         block('reading', '독서 취향 변화', 'survey', """
-T09|Compare the books that appealed to you earlier in life with the books you prefer now. What features do you look for today, and what experiences helped change your preferences?
-T14|Do you think discussing a book with other people adds to the experience of reading it? Explain your opinion and describe a situation in which a discussion might help or get in the way.
+T09|How are the books you liked when you were younger different from the books you like now? Why do you think your taste changed?
+T14|Do you think talking about a book with other people makes reading more fun? Why or why not? Give me an example.
 """),
     ],
     [
         block('gaming', '게임', 'survey', """
-T02|Describe what makes a game easy or difficult for you to learn. Use a game you know as an example and explain the parts a new player needs to understand.
-T06|Tell me about how you learned to play a game you now enjoy. Who or what helped you, what was difficult at first, and how did you improve?
-T08|Tell me about a time you had difficulty coordinating with other people during a game. What were you trying to do, what went wrong, and how did you respond?
+T02|What makes a game easy or hard to learn? Use a game you know as an example. What does a new player need to know?
+T06|How did you learn to play a game you enjoy now? Who taught you? What was hard at first?
+T08|Have you ever had trouble working with your teammates in a game? What happened? How did you handle it?
 """),
         block('travel', '국내 여행', 'survey', """
-T02|Describe a destination in your country that you would recommend for a short trip. What is the place like, what can visitors do there, and why does it appeal to you?
-T04|How do you prepare for a short trip within your country? Explain how you choose transportation, decide what to pack, and organize the things you want to do.
-T07|Tell me about a local trip when you discovered something you had not planned to see. How did you find it, what did you do there, and why do you remember it?
+T02|Tell me about a place in your country you would recommend for a short trip. What is it like? What can people do there?
+T04|How do you get ready for a short trip in your country? How do you choose how to get there? What do you pack?
+T07|Tell me about a trip in your country when you found something you did not plan to see. How did you find it? Why do you remember it?
 """),
         block('appointments', '약속', 'common', """
-T03|How do you usually arrange to meet a friend? Tell me how you choose a time and place and how you keep track of the plans you make.
-T05|Tell me about the last time you met someone after making plans in advance. How did you arrange the meeting, what did you do together, and how did the day go?
-T08|Describe a time two plans conflicted with each other. How did you notice the problem, what choices did you have, and how did you decide what to do?
+T03|How do you usually make plans to meet your friends? How do you decide when and where to meet?
+T05|Tell me about the last time you met someone you made plans with. What did you do together? How did the day go?
+T08|Have you ever made two plans for the same time by mistake? How did you find out? What did you do?
 """),
         block('park', '공원 프로그램', 'survey', """
-T11|You want to join a weekend guided walk at a park. Call the visitor center and ask three or four questions about the walk so you can decide whether it suits you.
-T12|You have signed up, but the visitor center tells you that the guided walk has been canceled. Call the friend who planned to join you, explain the cancellation, and suggest two alternative activities.
-T08|The role-play is over. Tell me about a time an activity you wanted to attend was canceled. How did you hear about it, how did you react, and what did you do instead?
+T11|You want to join a weekend guided walk at a park. Call the visitor center and ask three or four questions about the walk.
+T12|You signed up, but the visitor center says the guided walk has been canceled. Call the friend who was going with you, explain what happened, and suggest two other things you could do.
+T08|That's the end of the role-play. Has something you wanted to go to ever been canceled? How did you hear about it? What did you do instead?
 """),
         block('concerts', '콘서트 경험 비교', 'survey', """
-T10|Compare attending a small concert with attending a large one. How might the atmosphere, sound, and interaction with performers differ? Explain which experience you would choose and why.
-T13|What changes have you noticed in how people share their concert experiences? Describe a habit or trend you have observed and explain how it affects the audience or their friends.
+T10|Compare a small concert and a big concert. How are the atmosphere and the sound different? Which one would you choose?
+T13|How do people share their concert experiences these days? Tell me about something you have noticed. How is it different from the past?
 """),
     ],
     [
         block('reading', '독서', 'survey', """
-T02|Describe a place where you find books to read. What is available there, how do you look through the choices, and what makes the place useful to you?
-T04|Explain how you choose a book when you do not already have a title in mind. What do you look at first, what information do you use, and how do you make your final decision?
-T05|Tell me about the last time you started reading a new book. How did you find it, what were your first impressions, and what did you decide to do after reading the opening part?
+T02|Tell me about a place where you get books to read. What is it like? Why do you go there?
+T04|How do you choose a book when you don't have one in mind? What do you look at first? How do you make the final choice?
+T05|Tell me about the last book you started reading. How did you find it? What did you think of the first part?
 """),
         block('jogging', '조깅', 'survey', """
-T02|Describe a place you have used for a light jog, even if you do not jog regularly. What is the route like, and what makes it comfortable or inconvenient to use?
-T03|On a day when you choose to go for a short jog, how do you get ready? Tell me how you choose a pace and distance and what you do afterward.
-T07|Tell me about an outdoor activity that left you feeling different afterward. You can discuss a short jog or another casual outing. What happened, and how did your mood or energy change?
+T02|Tell me about a place where you have gone jogging, even if you don't jog often. What is the route like? What do you like or dislike about it?
+T03|When you go jogging, how do you get ready? How far do you usually go? What do you do after?
+T07|Tell me about a time you felt really good after being active outside. It can be jogging or any other outdoor activity. What happened? How did you feel?
 """),
         block('deliveries', '배달·배송', 'common', """
-T03|When you have something delivered to your home, how do you usually arrange it? Tell me how you provide instructions, check its arrival, and receive the delivery.
-T05|Tell me about a recent delivery you received. What were you expecting, how did it arrive, and what did you do after receiving it?
-T08|Describe a time an item arrived late or was different from what you expected. How did you notice the problem, who did you contact, and what was the result?
+T03|How do you usually get things delivered to your home? How do you order them? How do you receive them?
+T05|Tell me about the last package you got. What was it? What did you do after you got it?
+T08|Have you ever had a delivery that came late or was not what you ordered? What happened? Who did you contact?
 """),
         block('movies', '영화관 예매', 'survey', """
-T11|You want to arrange a movie outing for yourself and two friends. Call the cinema and ask three or four questions that will help you choose a screening and seats.
-T12|You have booked the seats, but you notice that you selected the wrong date. Call the cinema, explain the mistake, and suggest two possible ways to correct the booking.
-T08|The role-play is complete. Tell me about a real time you made a mistake while booking or ordering something. What happened, how did you try to correct it, and what was the outcome?
+T11|You want to go to a movie with two friends. Call the movie theater and ask three or four questions about the showtimes and seats.
+T12|You booked the seats, but you realize you picked the wrong date. Call the theater, explain your mistake, and give two ways to fix the booking.
+T08|That's the end of the role-play. Have you ever made a mistake when booking or ordering something? What happened? How did you fix it?
 """),
         block('vacation', '휴가 방식', 'survey', """
-T10|Compare spending a vacation mostly at home with spending it away from home. How do the costs, daily choices, and opportunities to rest differ for you?
-T14|Some people feel they must be productive even during their days off. What do you think makes time off worthwhile? Explain your view using examples of activities you find meaningful.
+T10|Compare spending a vacation at home and going somewhere on vacation. How are they different? Which do you like better?
+T14|Some people think they should do something useful even on their days off. What do you think? What makes a day off worth it for you?
 """),
     ],
     [
         block('park', '공원', 'survey', """
-T02|Describe the kinds of people you see using a park you know. What do different visitors do there, and how does the park provide space for those activities?
-T09|How has your use of parks changed over the years? Compare your reasons for visiting parks in the past with your reasons today, and explain what led to the change.
-T07|Tell me about a memorable encounter with someone during an outing to a park or another public outdoor place. What happened, what did you say or do, and why do you remember it?
+T02|What kinds of people do you see at a park you go to? What do they do there? Tell me in detail.
+T09|How has the way you use parks changed over the years? Why did you go to parks in the past? Why do you go now?
+T07|Tell me about a memorable time you met someone at a park or another place outdoors. What happened? Why do you remember it?
 """),
         block('travel_abroad', '해외 여행', 'survey', """
-T02|Describe a place you have visited in another country. What did the surroundings look like, what did people do there, and which details stood out to you?
-T05|Tell me about the first day of your most recent trip abroad. Describe what you did after arriving, how you found your way around, and what you remember most about that day.
-T08|Tell me about a time it was difficult to communicate while traveling. What were you trying to understand or explain, what did you try, and how did the situation turn out?
+T02|Tell me about a place you visited in another country. What did it look like? What do you remember most about it?
+T05|Tell me about the first day of your last trip abroad. What did you do after you arrived? How did you find your way around?
+T08|Have you ever had trouble communicating while traveling? What were you trying to say? How did it turn out?
 """),
         block('furniture', '가구', 'common', """
-T02|Describe a piece of furniture you use often. Where is it, what does it look like, and how does it help you carry out an activity at home?
-T04|Explain how you decide where to put furniture in a room. What do you consider first, what do you measure or check, and how do you know the arrangement works?
-T08|Tell me about a time you had to move, repair, or replace something at home. What led to the change, what steps did you take, and how did the space work afterward?
+T02|Tell me about a piece of furniture you use a lot. Where is it? What does it look like?
+T04|How do you decide where to put furniture in a room? What do you think about first?
+T08|Have you ever had to move, fix, or replace something at home? What happened? What did you do?
 """),
         block('concerts', '콘서트 좌석', 'survey', """
-T11|You are considering tickets for a concert at a venue you have never visited. Call the ticket office and ask three or four questions about the seating and the experience at the venue.
-T12|You have bought tickets, but the confirmation shows two separate seats instead of seats together. Call the ticket office, explain the problem, and propose two acceptable solutions.
-T08|That is the end of the role-play. Tell me about a time an arrangement for you and another person was not what you expected. What was different, and how did you work out a solution?
+T11|You want to buy tickets for a concert at a place you've never been to. Call the ticket office and ask three or four questions about the seats and the venue.
+T12|You bought two tickets, but the seats are not next to each other. Call the ticket office, explain the problem, and give two ways to fix it.
+T08|That's the end of the role-play. Has a booking for you and someone else ever turned out wrong? What was wrong? How did you solve it?
 """),
         block('walking', '걷기 환경', 'survey', """
-T10|Compare walking along busy streets with walking in a quieter outdoor area. What can you do or notice in each setting, and how do you decide which route suits your day?
-T14|What changes would make your neighborhood more pleasant for people taking short walks? Describe the most useful improvement and explain why it would matter to people who live there.
+T10|Compare walking on a busy street and walking in a quiet place. What can you see or do in each place? Which do you prefer?
+T14|What would make your neighborhood a better place for walking? What is the most needed change? Why?
 """),
     ],
     [
         block('movies', '영화', 'survey', """
-T02|Describe a movie setting that you found memorable. What kind of place was shown, what details created its atmosphere, and how did the setting contribute to your experience of the movie?
-T09|Compare how you watched movies several years ago with how you watch them now. What has changed in the devices, places, or people involved, and why did those changes happen?
-T08|Tell me about a time something interrupted a movie you were watching. What caused the interruption, how did you deal with it, and were you able to continue watching?
+T02|Tell me about a place shown in a movie that you remember. What did it look like? Why was it memorable?
+T09|How did you watch movies a few years ago? How do you watch them now? What has changed?
+T08|Has anything ever interrupted you while you were watching a movie? What happened? Were you able to finish the movie?
 """),
         block('travel', '국내 여행', 'survey', """
-T02|Describe a place you like to stop at during a trip within your country. What can travelers do there, and what makes the stop different from simply passing through?
-T05|Tell me about the most recent short trip you took within your country. How did you get there, what did you do during the trip, and what was the journey home like?
-T09|How are your short trips today different from the trips you took when you were younger? Compare how you choose destinations and spend your time, and explain why your preferences changed.
+T02|When you travel in your country, is there a place you like to stop on the way? What is it like? What do you do there?
+T05|Tell me about the last short trip you took in your country. How did you get there? What did you do?
+T09|How are your trips now different from the trips you took when you were younger? How do you choose where to go? Why did it change?
 """),
         block('neighbors', '이웃', 'common', """
-T02|Describe the area immediately around your home. What places or features do neighbors share, and where do people tend to run into one another?
-T03|How do people in your neighborhood usually communicate about shared matters? Describe the ways information is passed around and give an example of when those ways are useful.
-T07|Tell me about a time someone nearby helped you, or you helped someone else. What was the situation, what did each person do, and how did the interaction end?
+T02|Tell me about the area around your home. What places do your neighbors share? Where do you run into them?
+T03|How do people in your building or neighborhood share news or information? Give me an example.
+T07|Tell me about a time a neighbor helped you or you helped a neighbor. What happened? How did it end?
 """),
         block('travel_abroad', '해외 현지 투어', 'survey', """
-T11|During a trip abroad, you want to join a guided walking tour of the city. Call the tour company and ask three or four questions to check whether the tour fits your plans.
-T12|You have booked the tour, but the company moves the meeting point to a place you cannot reach in time. Call the company, explain the difficulty, and suggest two ways to resolve it.
-T08|The role-play has ended. Tell me about a time you had trouble finding or reaching a meeting place. What made it difficult, how did you contact the other people, and what happened next?
+T11|You are traveling abroad and want to join a walking tour of the city. Call the tour company and ask three or four questions about the tour.
+T12|You booked the tour, but the company moved the meeting place to somewhere you cannot get to in time. Call the company, explain the problem, and give two ways to solve it.
+T08|That's the end of the role-play. Have you ever had trouble finding a meeting place? What made it hard? What happened in the end?
 """),
         block('shows', '공연 관람 방식', 'survey', """
-T10|Compare seeing a live performance in person with watching a recording of it. What can you notice or enjoy in each format, and what might you miss?
-T13|What changes have you noticed in the way people learn about live performances? Describe how a recommendation or a new way of sharing information can affect what people decide to attend.
+T10|Compare seeing a live show in person and watching a video of it. What can you enjoy in each? What do you miss?
+T13|How do people find out about shows and performances these days? How is it different from the past?
 """),
     ],
     [
         block('shows', '공연', 'survey', """
-T02|Describe what you notice about the audience at a live performance. How do people behave before, during, and after the show, and how does that affect the atmosphere?
-T03|What do you usually do on the day of a live performance? Tell me how you organize your other plans, when you arrive, and what you do after the show ends.
-T08|Tell me about a time it was difficult to see, hear, or enjoy an event. What caused the difficulty, what did you do about it, and how did the experience end?
+T02|Tell me about the audience at a live show. What do people do before and during the show? How does it affect the mood?
+T03|What do you usually do on the day you go to a show? When do you get there? What do you do after the show?
+T08|Have you ever had a hard time seeing or hearing at an event? What was the problem? What did you do about it?
 """),
         block('walking', '걷기', 'survey', """
-T03|When you take a walk with someone else, how do you spend that time? Tell me how you choose a route, what you talk about or notice, and how you decide when to return.
-T10|Compare taking a walk alone with taking one with another person. What is different about the pace, the choices you make, and the way you feel afterward?
-T08|Tell me about a time you had to change your route while going somewhere on foot. What blocked your original route, how did you find another way, and what happened in the end?
+T03|When you go for a walk with someone, what do you usually do? Where do you go? What do you talk about?
+T10|Compare walking alone and walking with someone else. How are they different? Which do you prefer?
+T08|Have you ever had to change your route while walking somewhere? What blocked the way? How did you find another way?
 """),
         block('public_facilities', '공공시설', 'common', """
-T02|Describe a public facility in your area that people can use in their free time. What does it offer, who uses it, and what makes it useful to the community?
-T04|Explain how someone can use a service at a public facility you know. Describe what they need to check or prepare and the steps they follow when they arrive.
-T05|Tell me about a recent visit to a shared public place, such as a library or community center. Why did you go, what did you do there, and how was the visit?
+T02|Tell me about a public place in your area that people can use in their free time. What does it have? Who uses it?
+T04|How do people use a service at a public place you know, like a library or community center? What do they need to bring? What do they do when they get there?
+T05|Tell me about the last time you went to a public place like a library or community center. Why did you go? What did you do?
 """),
         block('reading', '도서관 대출', 'survey', """
-T11|You want to borrow a book from a library you have not used before. Speak to a librarian and ask three or four questions about becoming a member and borrowing books.
-T12|You have borrowed a book, but you will be away when it is due and cannot return it in person. Call the library, explain your situation, and suggest two possible arrangements.
-T08|The role-play is finished. Tell me about a time you had difficulty returning something on time. What had you borrowed, what prevented the return, and how did you settle the matter?
+T11|You want to borrow a book from a library you've never used before. Talk to the librarian and ask three or four questions about getting a library card and borrowing books.
+T12|You borrowed a book, but you will be away on the due date and cannot return it. Call the library, explain the situation, and give two ways to solve the problem.
+T08|That's the end of the role-play. Have you ever had trouble returning something on time? What was it? How did you solve it?
 """),
         block('park', '공원 이용 변화', 'survey', """
-T09|Compare how a park or outdoor public space you know is used today with how it was used in the past. What activities or facilities have changed, and what might explain those changes?
-T14|Parks serve people who want quiet rest and people who want active recreation. How do you think a park can meet both needs? Explain your ideas with practical examples.
+T09|How is a park you know used today compared to the past? What has changed? Why do you think it changed?
+T14|Some people go to parks to rest quietly, and others go to play sports. How can a park be good for both groups? Give me some ideas.
 """),
     ],
     [
         block('concerts', '콘서트', 'survey', """
-T02|Describe what makes you interested in attending a particular concert. What do you look for in the performers, the program, or the venue, and which factor matters most to you?
-T06|Tell me about how you first became interested in going to concerts. What introduced you to the experience, and what did you learn from an early concert you attended?
-T05|Tell me about the last concert you went to or watched live online. Describe how you arranged to watch it, what happened during the performance, and what you did afterward.
+T02|What makes you want to go to a certain concert? Is it the singer, the songs, or the place? What matters most to you?
+T06|How did you first become interested in concerts? What was your first concert like? Who did you go with?
+T05|Tell me about the last concert you went to or watched live online. How did you get the ticket? What happened during the concert?
 """),
         block('vacation', '집에서 보내는 휴가', 'survey', """
-T02|Describe the space at home where you most enjoy spending a day off. What do you keep there, what can you do there, and what makes it comfortable for you?
-T09|Compare the way you spent days off at home a few years ago with the way you spend them now. Which activities have changed, and what caused your routine to change?
-T08|Tell me about a day off when a task or an unexpected event interrupted your rest. What happened, how did you handle it, and how did you spend the rest of the day?
+T02|Where in your home do you like to spend a day off? What is in that space? Why is it comfortable?
+T09|How did you spend your days off at home a few years ago? How do you spend them now? What changed?
+T08|Has your rest at home ever been interrupted by something unexpected? What happened? How did you spend the rest of the day?
 """),
         block('communication', '연락 방법', 'common', """
-T03|How do you usually keep in touch with friends you do not see often? Tell me which ways of communicating you use and how you decide when to contact them.
-T10|Compare making a phone call with exchanging text messages when arranging plans. What is easier or harder about each method, and when do you prefer one over the other?
-T08|Tell me about a time a message led to a misunderstanding. What did each person think, how did you discover the confusion, and how did you clear it up?
+T03|How do you keep in touch with friends you don't see often? Do you call or send messages? How often do you contact them?
+T10|Compare calling someone and texting someone to make plans. What is good or bad about each? Which do you use more?
+T08|Have you ever had a misunderstanding because of a message? What happened? How did you clear it up?
 """),
         block('travel', '기차 여행', 'survey', """
-T11|You are planning a weekend train trip with a friend. Call the train company's information desk and ask three or four questions before deciding which tickets to buy.
-T12|You have purchased the tickets, but your friend now needs to return home a day earlier. Call the ticket office, explain the change, and suggest two ways to adjust the travel arrangements.
-T08|That is the end of the role-play. Tell me about a time someone's plans changed during a trip or outing. What needed to change, how did you arrange it, and how did things turn out?
+T11|You are planning a weekend train trip with a friend. Call the train station and ask three or four questions before you buy tickets.
+T12|You bought the tickets, but your friend now has to come home one day early. Call the ticket office, explain the situation, and give two ways to change the tickets.
+T08|That's the end of the role-play. Have your plans ever changed during a trip or an outing? What happened? How did it turn out?
 """),
         block('reading', '독서와 여가', 'survey', """
-T10|Compare spending an evening reading with spending an evening playing a game. How do the two activities hold your attention, and what makes you choose one on a particular day?
-T14|Many people have several leisure activities competing for their free time. How do you think someone can decide what to spend time on without feeling rushed? Explain your view using your own interests.
+T10|Compare spending an evening reading and spending an evening playing games. How are they different? How do you choose which one to do?
+T14|Many people feel they don't have enough free time for all their hobbies. How do you decide what to do in your free time? Tell me what you think.
 """),
     ],
 ]
