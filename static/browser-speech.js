@@ -19,7 +19,7 @@ window.BrowserSpeech = (() => {
     if (supported) synth.cancel();
   }
 
-  function speak(text, {voiceURI = '', volume = 1, rate = 1, onStart = () => {}} = {}) {
+  function speak(text, {voiceURI = '', volume = 1, rate = 0.7, onStart = () => {}} = {}) {
     cancel();
     if (!supported) return Promise.reject(new Error('이 브라우저는 질문 음성을 지원하지 않습니다. 다른 브라우저에서 열어주세요.'));
     return new Promise((resolve, reject) => {
