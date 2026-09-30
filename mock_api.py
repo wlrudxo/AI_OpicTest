@@ -149,9 +149,19 @@ async def get_session(sid: str):
 async def start(sid: str):
     s = read(sid)
     if s['status'] == 'ready':
-        s.update(status='active', started_at=time.time(), deadline=time.time()+2400)
+        now = time.time()
+        s.update(status='active', started_at=now, deadline=None if practice(s) else now+2400)
         save(s)
     return s
+
+
+def practice(s):
+    return s['setup'].get('mode') == 'practice'
+
+
+def expired(s):
+    # Practice sessions have no deadline.
+    return s['deadline'] is not None and time.time() >= s['deadline']
 
 
 def current(s):
@@ -164,7 +174,7 @@ def current(s):
 async def play(sid: str):
     s = read(sid)
     q = current(s)
-    if time.time() >= s['deadline']:
+    if expired(s):
         raise HTTPException(409, '시험 시간이 종료되었습니다.')
     if s['cursor'] == 7 and s['adjustment'] is None:
         raise HTTPException(409, '먼저 난이도를 다시 선택해주세요.')
@@ -227,15 +237,39 @@ async def upload_answer(sid: str, qid: str, request: Request):
     filename = qid + '-' + token + (suffix or '')
     if not skipped:
         (folder(sid) / filename).write_bytes(b''.join(chunks))
+    attempt = 1 + sum(a['question_id'] == qid and a['file'] is not None for a in s['answers'])
     s['answers'].append({'id': token, 'question_id': qid, 'file': None if skipped else filename,
                          'stt_status': 'skipped' if skipped else 'queued', 'transcript_raw': '',
-                         'transcript_edited': None, 'saved_at': time.time()})
-    s['cursor'] += 1
-    if s['cursor'] >= len(s['questions']) or time.time() >= s['deadline']:
-        s['status'] = 'completed'
+                         'transcript_edited': None, 'saved_at': time.time(), 'attempt': attempt})
+    # Practice mode stays on the question so the answer can be reviewed or retried;
+    # /next moves on. A skip always moves on.
+    if skipped or not practice(s):
+        advance_cursor(s)
     save(s)
     if not skipped:
         queue.put_nowait((sid, token))
+    return s
+
+
+def advance_cursor(s):
+    s['cursor'] += 1
+    if s['cursor'] >= len(s['questions']) or expired(s):
+        s['status'] = 'completed'
+
+
+class Next(BaseModel):
+    question_id: str
+
+
+@router.post('/sessions/{sid}/next')
+async def next_question(sid: str, body: Next):
+    s = read(sid)
+    if not practice(s):
+        raise HTTPException(409, '연습 모드에서만 사용할 수 있습니다.')
+    # A stale double click for an earlier question must not skip the next one.
+    if s['status'] == 'active' and s['cursor'] < len(s['questions']) and current(s)['id'] == body.question_id:
+        advance_cursor(s)
+        save(s)
     return s
 
 
@@ -289,6 +323,8 @@ async def review(sid: str):
         if not matches:
             lines += ['미응답', '']
         for a in matches:
+            if len(matches) > 1:
+                lines += [f"시도 {a.get('attempt') or matches.index(a) + 1}"]
             lines += [f"상태: {a['stt_status']}", f"음성: {folder(sid) / a['file'] if a['file'] else '없음'}", f"원본 전사: {a['transcript_raw']}"]
             if a['transcript_edited'] is not None:
                 lines += [f"수정 전사: {a['transcript_edited']}"]

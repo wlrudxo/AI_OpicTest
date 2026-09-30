@@ -5,3 +5,4 @@
 
 #setup #mic-label{display:block;font-size:11px;overflow-wrap:anywhere}#feedback{white-space:pre-wrap;padding:22px;background:#f1f6fb;margin:20px 0}
 .preset-box{max-width:480px;margin:26px auto;padding:22px;background:#f3f6fc;border:1px solid #dbe3ef;border-radius:12px}.preset-box h2{font-size:19px;margin:0 0 8px}.preset-box p{margin:0 0 16px;color:#536076;font-size:14px}.preset-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.preset-buttons button{min-width:150px}#preset-status{margin-bottom:22px}
+.practice-result{margin:18px 0 0;text-align:left}.practice-result textarea{min-height:150px;line-height:1.7}.practice-result .buttons{flex-wrap:wrap}.answer-card h4.attempt{margin:16px 0 0;font-size:13px;color:var(--muted)}

@@ -28,6 +28,7 @@ python -m venv .venv
 
 1. 시작 화면에서 KT / SH 저장 설문을 불러오거나 직접 준비합니다. 프리셋은 난이도 5·01회차·실전 모드로 시작합니다. 수강 정보가 비어 있으면 최초 한 번 선택하고, 이후에는 프로필별로 기억합니다. Background Survey: 여가·취미·운동·휴가/출장 총 69개 중 12개 이상 선택. 여가 2개, 나머지 영역은 각각 1개 이상 선택합니다.
 2. 난이도 1–6, 회차 01–10, 실전/연습 모드를 선택합니다. 회차명에는 주제 힌트를 표시하지 않습니다.
+   - **연습 모드**는 시간 제한이 없고 질문을 반복해서 들을 수 있습니다. 답변 후 **녹음 정지**를 누르면 그 문제의 녹음·전사·길이를 바로 확인합니다. 다시 답변하면 시도 2, 3…으로 모두 저장되고, **다음 문제**를 눌러야 넘어갑니다. 결과 화면에서 피드백 요청 문구를 복사하거나 Claude Code 대화에 “방금 문제 피드백해줘”라고 요청하세요.
 3. 실제 마이크를 선택하고 샘플 음성·녹음을 점검합니다.
 4. Begin Test로 40분 시작. 질문 재생 후 자동 녹음, Next로 저장합니다. 실전 질문 청취는 최대 2회이며 첫 청취 후 5초 이내에 다시 듣기를 시작할 수 있습니다.
 5. 7번 뒤 난이도 재선택. 종료 후 녹음 듣기, 전사 수정, STT 재시도, 채점용 Markdown 내보내기를 사용할 수 있습니다.
@@ -59,6 +60,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe scripts/verify_survey.py
 .\.venv\Scripts\python.exe scripts/verify_practice_bank.py
 .\.venv\Scripts\python.exe scripts/verify_instrument_bank.py
+.\.venv\Scripts\python.exe scripts/verify_practice_mode.py
 ```
 
 설문 전체, 기존 선택값, 모든 회차·난이도 및 임시 디렉터리에서 새 세션 저장·로드를 확인합니다. 실제 GPU·마이크·TTS를 검증하는 테스트는 아닙니다.
