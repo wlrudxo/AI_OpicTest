@@ -12,7 +12,7 @@ from practice_bank_instrument import SETS, REQUIRED_TOPICS, BANK_VERSION
 from practice_bank import TYPE_LABELS
 from questions import build_questions
 
-SELECTION = ['movies', 'shows', 'concerts', 'park', 'instrument', 'jogging',
+SELECTION = ['yoga', 'shows', 'concerts', 'park', 'instrument', 'jogging',
              'walking', 'gym', 'no_exercise', 'vacation', 'travel', 'travel_abroad']
 
 
@@ -44,7 +44,7 @@ def main():
         assert qs[12]['roleplay_followup']
         for q in qs:
             assert q['bank_version'] == BANK_VERSION
-            assert q['topic_id'] not in {'reading', 'gaming', 'no_exercise'}
+            assert q['topic_id'] not in {'reading', 'gaming', 'movies', 'no_exercise'}
             if q['origin'] == 'survey':
                 assert q['topic_id'] in SELECTION
                 observed.add(q['topic_id'])
@@ -60,11 +60,11 @@ def main():
     assert duplicates == [10], duplicates  # Shared introduction only.
     assert len({q['prompt'] for q in all_questions}) == 141
     # The new bank must never require an instrument/gym the user did not select.
-    for removed in ('instrument', 'gym'):
+    for removed in ('instrument', 'gym', 'yoga'):
         qs = build_questions([t for t in SELECTION if t != removed], 1, 5)
         assert not any(q.get('bank_version') == BANK_VERSION for q in qs)
     asyncio.run(check_sessions())
-    print('PASS: instrument survey, 10 x 15, 141 unique, all 11 selected activities, 14 types, no reading/gaming, 5-5 persistence, 6 levels')
+    print('PASS: instrument survey, 10 x 15, 141 unique, all 11 selected activities, 14 types, no reading/gaming/movies, 5-5 persistence, 6 levels')
 
 
 if __name__ == '__main__':

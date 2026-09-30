@@ -1,13 +1,13 @@
-"""Original practice sets for the instrument/gym survey combination.
+"""Original practice sets for the instrument/gym/yoga survey combination.
 
 No particular instrument, employment, or regular exercise schedule is assumed.
 These are practice questions, not official or recalled exam questions.
 """
 from practice_bank import block, assemble_questions
 
-BANK_VERSION = 'instrument-v2'
+BANK_VERSION = 'instrument-v3'
 REQUIRED_TOPICS = frozenset({
-    'movies', 'shows', 'concerts', 'park', 'instrument', 'jogging',
+    'yoga', 'shows', 'concerts', 'park', 'instrument', 'jogging',
     'walking', 'gym', 'vacation', 'travel', 'travel_abroad',
 })
 
@@ -18,10 +18,10 @@ T02|Tell me about the musical instrument you play or used to play. What does it 
 T03|When do you usually play your instrument? Where do you play? What do you practice?
 T07|Tell me about a time you felt proud of something you played. What were you playing? Why was it special?
 """),
-        block('movies', '영화', 'survey', """
-T02|What kinds of movies do you like? What are they usually about? Why do you like them?
-T05|Tell me about the last movie you watched. How did you choose it? What did you think of it?
-T09|How has your taste in movies changed since you were younger? What did you like back then? What do you like now?
+        block('yoga', '요가', 'survey', """
+T02|Tell me about the place where you do yoga. What does it look like? Why do you like doing yoga there?
+T05|Tell me about the last time you did yoga. Where were you? What poses did you do?
+T09|How has your yoga practice changed since you first started? What was hard at the beginning? What is different now?
 """),
         block('home', '집', 'common', """
 T02|Tell me about the home you live in now. What does it look like? Where do you spend the most time?
@@ -59,9 +59,9 @@ T11|You want to try a new instrument before buying one. Call a music store that 
 T12|You rented the instrument, but when you get home, you find that an important part is missing. Call the store, explain the problem, and give two ways to solve it.
 T08|That's the end of the role-play. Have you ever received something that was missing a part or was not what you expected? How did you find out? What did you do?
 """),
-        block('movies', '영화 관람 변화', 'survey', """
-T09|How is going to a movie theater today different from when you were younger? What is the biggest change?
-T14|Some people never read reviews before watching a movie, while others read a lot of them. Which do you prefer? Why?
+        block('yoga', '요가 배우는 방식', 'survey', """
+T09|How are yoga classes today different from the past? How did people learn yoga before? How do they learn it now?
+T14|Some people say yoga is more about the mind than the body. What do you think? Why?
 """),
     ],
     [
@@ -132,10 +132,10 @@ T03|How do you usually make plans to meet a friend? How do you decide on a time 
 T05|Tell me about a recent time you met up with someone. Why did you meet? How did it go?
 T08|Have you and a friend ever mixed up the time or place of a meeting? How did you find out? What did you do?
 """),
-        block('movies', '영화관 좌석', 'survey', """
-T11|You are planning to see a movie with a few friends. Call the theater and ask three or four questions about showtimes and seats.
-T12|You booked the tickets, but the seats are far apart, not together. Call the theater, explain the problem, and give two ways to fix it.
-T08|That's the end of the role-play. Have you ever had a mistake in a reservation or an order? What was wrong? How was it handled?
+        block('yoga', '요가 수업 예약', 'survey', """
+T11|You want to try a yoga class at a new studio near your home. Call the studio and ask three or four questions about the classes.
+T12|You booked a trial class, but you just found out you have an important appointment at the same time. Call the studio, explain the situation, and give two ways to solve the problem.
+T08|That's the end of the role-play. Have you ever had to cancel or change a class or lesson you signed up for? Why? What did you do?
 """),
         block('gym', '운동 장소', 'survey', """
 T10|Compare working out at home and working out at a gym. How are they different? Which is better for you?
@@ -169,10 +169,10 @@ T14|Do you like to make a plan for your days off, or do you decide as you go? Wh
 """),
     ],
     [
-        block('movies', '영화와 관람 경험', 'survey', """
-T02|Tell me about a movie theater you have been to. What is it like inside? What do you like or dislike about it?
-T03|When you watch a movie at home, how do you get ready? How do you choose the movie? What do you eat or drink?
-T08|Has anything ever interrupted you while watching a movie? What happened? Did you finish the movie?
+        block('yoga', '요가 루틴', 'survey', """
+T02|Tell me about a yoga pose you like. How do you do it? How does it make you feel?
+T03|What is your usual yoga routine like? When do you do it? How long does it take? It's okay if you only do yoga once in a while.
+T08|Have you ever had a problem while doing yoga, like hurting yourself or not being able to do a pose? What happened? What did you do?
 """),
         block('gym', '운동 경험', 'survey', """
 T02|Tell me about a kind of exercise you have tried at a gym. What do you do? What equipment do you use?
