@@ -113,7 +113,7 @@ T08|That's the end of the role-play. Have you ever gone somewhere and found it u
 """),
         block('travel_abroad', '해외여행 준비', 'survey', """
 T09|How is getting ready for a trip abroad different from the past? How did people find information back then? How about now?
-T14|Some people like to go back to a country they know, and others always choose a new place. Which do you prefer for your next trip abroad? Why?
+T13|Which countries are popular with travelers from your country these days? Why do people go there? How has this changed?
 """),
     ],
     [
@@ -165,7 +165,7 @@ T08|That's the end of the role-play. Has something you were looking forward to e
 """),
         block('vacation', '휴가 방식', 'survey', """
 T10|Compare spending a vacation at home and taking a short trip. How do you get ready for each? What is good or bad about each one?
-T14|Do you like to make a plan for your days off, or do you decide as you go? Why? Give me an example.
+T13|How do people in your country spend their days off these days? How is it different from before? Why?
 """),
     ],
     [
@@ -217,7 +217,7 @@ T08|That's the end of the role-play. Have you ever arrived somewhere and found t
 """),
         block('walking', '걷기와 조깅', 'survey', """
 T10|Compare going for a walk and going for a jog. How are they different? When do you choose each one?
-T14|What would make your neighborhood more comfortable for people who like to walk? What change would you like to see? Why?
+T13|More people walk or jog for their health these days. Why do you think that is? What changes have you noticed?
 """),
     ],
     [

@@ -81,7 +81,7 @@ T08|That's the end of the role-play. Have you ever been unable to get something 
 """),
         block('travel_abroad', '해외여행 방식', 'survey', """
 T10|Compare traveling abroad on your own and traveling with a group tour. What are the good and bad points of each? Which do you prefer?
-T14|Some people plan every day of a trip, and others just go with the flow. Which way works better for you when you travel abroad? Why?
+T13|What do people worry about when they travel abroad these days? Tell me about one worry. Why is it a problem?
 """),
     ],
     [
@@ -133,7 +133,7 @@ T08|That's the end of the role-play. Have you ever borrowed something that did n
 """),
         block('reading', '독서 취향 변화', 'survey', """
 T09|How are the books you liked when you were younger different from the books you like now? Why do you think your taste changed?
-T14|Do you think talking about a book with other people makes reading more fun? Why or why not? Give me an example.
+T13|Many people say that people read fewer books these days. Do you agree? Why do you think this is happening?
 """),
     ],
     [
@@ -185,7 +185,7 @@ T08|That's the end of the role-play. Have you ever made a mistake when booking o
 """),
         block('vacation', '휴가 방식', 'survey', """
 T10|Compare spending a vacation at home and going somewhere on vacation. How are they different? Which do you like better?
-T14|Some people think they should do something useful even on their days off. What do you think? What makes a day off worth it for you?
+T13|How do people in your country spend their vacations these days? What has changed? Why do you think it changed?
 """),
     ],
     [
@@ -211,7 +211,7 @@ T08|That's the end of the role-play. Has a booking for you and someone else ever
 """),
         block('walking', '걷기 환경', 'survey', """
 T10|Compare walking on a busy street and walking in a quiet place. What can you see or do in each place? Which do you prefer?
-T14|What would make your neighborhood a better place for walking? What is the most needed change? Why?
+T13|What problems do people have when they walk around your city? Why is it a problem? What is being done about it?
 """),
     ],
     [
@@ -263,7 +263,7 @@ T08|That's the end of the role-play. Have you ever had trouble returning somethi
 """),
         block('park', '공원 이용 변화', 'survey', """
 T09|How is a park you know used today compared to the past? What has changed? Why do you think it changed?
-T14|Some people go to parks to rest quietly, and others go to play sports. How can a park be good for both groups? Give me some ideas.
+T13|What problems do people have at parks these days? Tell me about one problem. What do people say about it?
 """),
     ],
     [
@@ -289,7 +289,7 @@ T08|That's the end of the role-play. Have your plans ever changed during a trip 
 """),
         block('reading', '독서와 여가', 'survey', """
 T10|Compare spending an evening reading and spending an evening playing games. How are they different? How do you choose which one to do?
-T14|Many people feel they don't have enough free time for all their hobbies. How do you decide what to do in your free time? Tell me what you think.
+T13|How do people around you spend their free time these days? How is it different from the past? Why did it change?
 """),
     ],
 ]

@@ -131,7 +131,7 @@ P2는 오픽만수르 5·6 난이도 1회, P3는 오픽만수르 5-5 세트 2다
 
 ## 6. 권장 조치
 
-1. **15번을 "주변·사회의 동향·이슈"로 통일하고 14번 일부를 사람들 수준의 비교로 올린다.** 15번은 `What issues/problems/changes do people talk about … these days? Why?` 틀로 4절 B의 9개를 바꾼다. 14번은 20개 중 절반쯤을 `How is … different between younger and older people / from the past in your country?` 형태로 바꾼다. 어휘는 지금 수준을 유지한다.
+1. **(2026-11-17 15번 9개 적용: 4절 B를 T13 동향·이슈형으로 교체. 14번은 미적용)** **15번을 "주변·사회의 동향·이슈"로 통일하고 14번 일부를 사람들 수준의 비교로 올린다.** 15번은 `What issues/problems/changes do people talk about … these days? Why?` 틀로 4절 B의 9개를 바꾼다. 14번은 20개 중 절반쯤을 `How is … different between younger and older people / from the past in your country?` 형태로 바꾼다. 어휘는 지금 수준을 유지한다.
 2. **묶음 첫 문항과 경험 문항의 규칙을 정해 4절 A·C·D의 21개를 고친다.** 첫 문항은 `Tell me about + 눈에 보이는 대상`으로 시작하고 `What makes …`, `How does it affect …`를 쓰지 않는다. 경험 문항의 전제는 "기억에 남는", "최근", "문제가 있었던" 세 가지까지만 붙인다. 돌발은 사용자가 대상을 고르게 하지 말고 질문이 대상을 정해 준다.
 3. **길이는 더 줄이지 않는다.** 여유가 있으면 회차의 몇 문항에 실전식 도입 문장(`You indicated in the survey that you like …`)을 붙이고, 돌발 묶음 위치를 회차마다 2–4·5–7·8–10으로 돌린다. 시험이 12/3이라 1·2번을 먼저 하고 이것은 뒤로 미뤄도 된다.
 
