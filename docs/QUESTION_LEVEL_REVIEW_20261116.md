@@ -135,6 +135,21 @@ P2는 오픽만수르 5·6 난이도 1회, P3는 오픽만수르 5-5 세트 2다
 2. **묶음 첫 문항과 경험 문항의 규칙을 정해 4절 A·C·D의 21개를 고친다.** 첫 문항은 `Tell me about + 눈에 보이는 대상`으로 시작하고 `What makes …`, `How does it affect …`를 쓰지 않는다. 경험 문항의 전제는 "기억에 남는", "최근", "문제가 있었던" 세 가지까지만 붙인다. 돌발은 사용자가 대상을 고르게 하지 말고 질문이 대상을 정해 준다.
 3. **길이는 더 줄이지 않는다.** 여유가 있으면 회차의 몇 문항에 실전식 도입 문장(`You indicated in the survey that you like …`)을 붙이고, 돌발 묶음 위치를 회차마다 2–4·5–7·8–10으로 돌린다. 시험이 12/3이라 1·2번을 먼저 하고 이것은 뒤로 미뤄도 된다.
 
+## 7. 공식 예시 대조와 KT 06–10회차 개편 (2026-11-19)
+
+사설 세트만 참고한 한계를 줄이려고 공식 공개 예시 두 가지의 원문을 받아 대조했다.
+
+| 자료 | 문항 길이 | 눈에 띄는 점 |
+|---|---|---|
+| [LTI OPIc Examinee Handbook](https://www.languagetesting.com/pub/media/wysiwyg/PDF/opic-examinee-handbook.pdf)(2018) Advanced 예시 4개 | 약 40–50단어(시사 보도 1개는 21단어) | `Tell me the whole story … from beginning to end in as much detail as you can`처럼 길고 자세한 답을 요구한다. Intermediate 예시는 10–25단어다 |
+| [멀티캠퍼스 주관사 가이드](https://www.opic.co.kr/senior/mail/2016/0729/images/a/opic_guide.pdf)(2016) 모의고사 15문항 | 12–38단어 | `You indicated in the survey that …`, `Tell me in detail`, 역할극의 `I'd like to give you a situation …`, `I'm sorry, but there is a problem you need to resolve.` |
+
+판정은 1절과 같다. 유형과 배치는 맞고 난도는 실전보다 쉬운 쪽이다. 새로 확인한 것은 우리 문항에 "자세히, 처음부터 끝까지" 요구가 없어 짧은 답으로 끝나기 쉽다는 점이다. 2026-09-28 KT 모의고사의 답변 중앙값이 54초였다.
+
+설문 개편 이후의 실제 기출 복기는 공개 자료에서 찾지 못했다. 위 두 자료도 2016, 2018년 것이다.
+
+조치: KT 06–10회차를 실전형으로 다시 썼다(survey-v3, [구현 범위](PRACTICE_SETS.md)). 4절의 KT 문항 중 06–10회차에 있던 9개(A의 09-02, 10-02, C의 07-09, 08-02, 08-05, 08-08, 08-09, 09-09, D의 07-04)는 이 개편으로 없어졌다. KT 01–05회차의 6개와 SH의 문항은 그대로다.
+
 ## 한계
 
 - 실전 구성과 길이의 근거는 사설 모의고사 두 세트와 커뮤니티 요약이다. 공식 번호별 배치나 실제 기출 원문과 대조한 것이 아니다.

@@ -97,6 +97,9 @@ def legacy_questions(topics, set_number):
     return out
 
 
+TASK_START = r'(Tell|Describe|Compare|Explain|Give|Choose|Call|Please)\b'
+
+
 def adjusted_prompt(question, choice):
     """Keep role-play context and instructions intact when changing difficulty."""
     base = question['base_prompt']
@@ -105,7 +108,13 @@ def adjusted_prompt(question, choice):
     if choice == 'easier':
         if roleplay or question.get('roleplay_followup') or question['type'] == '관련 경험':
             return base
-        return re.split(r'(?<=[.!?])\s+', base, maxsplit=1)[0]
+        # Keep lead-in statements ("You indicated in the survey...") with the first actual task.
+        kept = []
+        for sentence in re.split(r'(?<=[.!?])\s+', base):
+            kept.append(sentence)
+            if sentence.endswith('?') or re.match(TASK_START, sentence):
+                break
+        return ' '.join(kept)
     if choice == 'harder':
         if roleplay:
             return base + ' Include the details the other person needs to respond to you.'
