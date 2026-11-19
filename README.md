@@ -4,7 +4,7 @@ PC와 모바일 브라우저에서 사용하는 개인 연습용 웹앱입니다
 
 ## 설치 및 실행
 
-**간단판**은 [wlrudxo.github.io/AI_OpicTest/simple/](https://wlrudxo.github.io/AI_OpicTest/simple/)이다. KT/SH 프로필과 회차만 고르면 질문을 브라우저 TTS로 자동 2회 읽고, 문항별 답변 경과 시계(1분 30초 주황·2분 빨강)를 보여 준다. 녹음·STT·결과 파일은 없다. 소스 `simple/`, 빌드 `python scripts/build_simple.py`, 검증 `node scripts/verify_simple.cjs`(Playwright·Chrome, 가짜 TTS).
+**간단판**은 [wlrudxo.github.io/AI_OpicTest/simple/](https://wlrudxo.github.io/AI_OpicTest/simple/)이다. KT/SH 프로필과 회차만 고르면 첫 질문을 브라우저 TTS로 2회 읽고, 다음 문항에서는 「▶ 질문 듣기」를 누를 때까지 기다린다(음성 설정에서 바로 재생 선택 가능). Enter는 다음 / 대기 중 듣기, Space는 일시정지 / 계속이며, 재생 중 「바로 답변」으로 음성을 건너뛸 수 있다. 대기와 일시정지 시간을 뺀 전체 시계와 문항별 답변 경과 시계(1분 30초 주황·2분 빨강)를 보여 준다. 녹음·STT·결과 파일은 없다. 소스 `simple/`, 빌드 `python scripts/build_simple.py`, 검증 `node scripts/verify_simple.cjs`(Playwright·Chrome, 가짜 TTS).
 
 **설치 없는 PC·모바일 버전**은 [전달용 HTML 안내](docs/PORTABLE.md)를 참고하세요. SH / KT별 10회분 질문을 브라우저 기본 TTS로 읽고, 브라우저 STT로 TXT·MD 결과를 만듭니다. MP3 준비·Python·CUDA·AI 모델 설치가 필요하지 않습니다. 모바일은 HTTPS 주소를 Android Chrome 또는 iPhone Safari에서 열고 음성·마이크를 확인하세요.
 

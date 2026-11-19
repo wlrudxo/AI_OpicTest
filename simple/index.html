@@ -31,12 +31,15 @@ details[open] summary{margin-bottom:12px}
 #clock{font-size:64px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-2px;color:#c3ccd9}
 #clock.run{color:#17253b}#clock.warn{color:#e07b00}#clock.over{color:#d33}
 #text{text-align:left;line-height:1.6;margin-top:14px}
-.nav{display:flex;gap:8px}.nav button{flex:1}.nav .primary{flex:2}
+.nav{display:flex;gap:8px}.nav button{flex:1;min-width:0;padding:12px 8px}.nav .primary{flex:2}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.controls button{flex:1;min-width:140px}
+.paused .stage{border:2px solid #e07b00}.paused #status{color:#a65b00}
+.check{display:flex;align-items:center;gap:8px;margin-bottom:16px;line-height:1.5}
 ol{padding-left:22px;margin:0}ol li{margin:0 0 10px;line-height:1.5}ol li span{color:#8a97aa;font-size:13px}
 </style></head><body><main>
 <section id="home">
 <h1>OPIc 간단 모의고사</h1>
-<p class="sub">설문 생략 · 5–5 · 15문항 · 질문 2회 자동 재생</p>
+<p class="sub">설문 생략 · 5–5 · 15문항 · 질문 2회 듣기</p>
 <div class="card">
 <label>설문 프로필</label><div class="row" id="profiles"></div>
 <label for="set">회차</label><select id="set"></select>
@@ -46,6 +49,7 @@ ol{padding-left:22px;margin:0}ol li{margin:0 0 10px;line-height:1.5}ol li span{c
 <details class="card"><summary>음성 설정</summary>
 <label for="voice">질문 음성</label><select id="voice"></select>
 <label for="rate">속도</label><select id="rate"><option value="0.7">0.7 (기본)</option><option value="0.85">0.85</option><option value="1">1.0</option></select>
+<label class="check"><input id="autoplay" type="checkbox">문제를 넘기면 바로 재생</label>
 <button id="test">음성 확인</button>
 </details>
 <p class="small">자체 제작 연습문항이며 공식 기출이 아닙니다. 질문은 브라우저 TTS로 읽습니다(녹음·인식 없음). 폰은 무음 모드를 끄고 화면을 켜 두세요.</p>
@@ -55,12 +59,13 @@ ol{padding-left:22px;margin:0}ol li{margin:0 0 10px;line-height:1.5}ol li span{c
 <div class="head"><span class="qno">Q<span id="qno">1</span> <small>/ 15</small></span><span id="qtype"></span></div>
 <div id="bar"><i></i></div>
 <div class="card stage">
-<p id="status"></p><p id="hint"></p>
+<p id="status" role="status" aria-live="polite"></p><p id="hint"></p>
 <div id="clock">0:00</div>
 <details id="textbox"><summary>질문 텍스트 보기</summary><p id="text"></p></details>
 </div>
+<div class="controls"><button id="listen" class="primary">▶ 질문 듣기</button><button id="skip">바로 답변</button><button id="pause" aria-pressed="false">⏸ 일시정지</button></div>
 <div class="nav"><button id="prev">❮ 이전</button><button id="replay">↻ 다시</button><button id="next" class="primary">다음 ❯</button></div>
-<p class="small" style="margin-top:14px">PC는 Enter로 다음. 답변 시계는 1분 30초에 주황, 2분에 빨강(자동으로 넘어가지 않음). <a href="#" id="quit">그만하기</a></p>
+<p class="small" style="margin-top:14px">Enter: 다음 / 대기 중 질문 듣기. Space: 일시정지 / 계속. 대기와 일시정지 중에는 시계가 멈춥니다. 답변 시계는 1분 30초에 주황, 2분에 빨강(자동으로 넘어가지 않음). <a href="#" id="quit">그만하기</a></p>
 </section>
 <section id="done" hidden>
 <h1>끝!</h1><p class="sub" id="summary"></p>
